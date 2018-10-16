@@ -26,6 +26,7 @@ class App extends React.Component {
             });
 
             const resultJSON = await result.json();
+            console.log(resultJSON);
             const character = resultJSON.characters[0];
             this.setState({ CaptainKirkBio: character });
         } catch (error) {
@@ -44,6 +45,14 @@ class App extends React.Component {
                     to prove it.
                 </p>
                 <p>- Captain Kirk</p>
+                <section>
+                    {Object.values(CaptainKirkBio).length === 0 ? (
+                        <p>Loading User Information</p>
+                    ) : (
+                        <p style={{ wordBreak: 'break-all' }}>{JSON.stringify(CaptainKirkBio)}</p>
+                    )}
+
+                </section>
             </div>
         )
     }
