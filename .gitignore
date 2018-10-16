@@ -1,3 +1,6 @@
+# React dist
+dist/*
+
 # NPM packages folder.
 node_modules
 
