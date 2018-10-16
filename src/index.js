@@ -5,11 +5,15 @@ import './myStyles.scss';
 
 class App extends React.Component {
     state = {
-        CaptainKirkBio: {}
+        CaptainKirkBio: {},
+        Foo: null, // Foo is out component
     };
 
     componentDidMount() {
         this.onGetKirkBio();
+        import(/* webpackChunkName: 'Foo' */ './Foo').then(Foo => {
+            this.setState({ Foo: Foo.default });
+        })
     }
 
     onGetKirkBio = async () => {
@@ -26,7 +30,6 @@ class App extends React.Component {
             });
 
             const resultJSON = await result.json();
-            console.log(resultJSON);
             const character = resultJSON.characters[0];
             this.setState({ CaptainKirkBio: character });
         } catch (error) {
@@ -35,7 +38,7 @@ class App extends React.Component {
     };
 
     render() {
-        const { CaptainKirkBio } = this.state;
+        const { CaptainKirkBio, Foo } = this.state;
         return (
             <div className="app">
                 <img src="/dist/images/header.jpg" alt="header" className="app-header"/>
@@ -51,8 +54,8 @@ class App extends React.Component {
                     ) : (
                         <p style={{ wordBreak: 'break-all' }}>{JSON.stringify(CaptainKirkBio)}</p>
                     )}
-
                 </section>
+                {Foo ? <Foo bar="test" /> : <p>Foo is loading</p>}
             </div>
         )
     }
