@@ -6,13 +6,13 @@ import './myStyles.scss';
 class App extends React.Component {
     state = {
         CaptainKirkBio: {},
-        Foo: null, // Foo is out component
+        Board: null, // Board is out component
     };
 
     componentDidMount() {
         this.onGetKirkBio();
-        import(/* webpackChunkName: 'Foo' */ './Foo').then(Foo => {
-            this.setState({ Foo: Foo.default });
+        import(/* webpackChunkName: 'Board' */ './Board').then(Board => {
+            this.setState({ Board: Board.default });
         })
     }
 
@@ -38,24 +38,10 @@ class App extends React.Component {
     };
 
     render() {
-        const { CaptainKirkBio, Foo } = this.state;
+        const { CaptainKirkBio, Board } = this.state;
         return (
             <div className="app">
-                <img src="/dist/images/header.jpg" alt="header" className="app-header"/>
-                <p>
-                    We are a most promising species, Mr. Spock, as predators go. Did you know that? I frequently
-                    have my doubts. I dont. Not any more. And maybe in a thousand years or so, we will be able
-                    to prove it.
-                </p>
-                <p>- Captain Kirk</p>
-                <section>
-                    {Object.values(CaptainKirkBio).length === 0 ? (
-                        <p>Loading User Information</p>
-                    ) : (
-                        <p style={{ wordBreak: 'break-all' }}>{JSON.stringify(CaptainKirkBio)}</p>
-                    )}
-                </section>
-                {Foo ? <Foo bar="test" /> : <p>Foo is loading</p>}
+                {Board ? <Board bar="test" /> : <p>Board is loading</p>}
             </div>
         )
     }

@@ -1,16 +1,18 @@
 body {
-  background-color: skyblue;
-  color: black;
+  background-color: #0079bf;
+  color: #000;
 }
 
 .app {
-  width: 450px;
-  margin: 0 auto;
-  padding-top: 50px;
+  display: flex;
 
-  .app-header {
-    height: 250px;
-    width: inherit;
-    object-fit: cover;
+  .column-wrapper {
+    padding: 0 7px;
+
+    .list {
+      .item {
+        border: 1px solid #000;
+      }
+    }
   }
 }
