@@ -10,7 +10,7 @@ header {
   align-items: center;
   padding: 0 5px;
   margin-bottom: 20px;
-  border-radius: 2px;
+  border-radius: 5px 5px 0 0;
 
   h1 {
     font-weight: normal;
@@ -26,6 +26,7 @@ header {
 footer {
   background-color: red;
   padding: 15px 5px;
+  border-radius: 0 0 5px 5px;
 }
 
 .app-wrapper {
