@@ -7,23 +7,28 @@ import './myStyles.scss';
 class App extends React.Component {
     state = {
         initialData,
+        Header: null,
         Board: null, // Board is out component
     };
 
     componentDidMount() {
+        import(/* webpackChunkName: 'Header' */ './Header').then(Header => {
+            this.setState({ Header: Header.default });
+        });
         import(/* webpackChunkName: 'Board' */ './Board').then(Board => {
             this.setState({ Board: Board.default });
         })
     }
 
     render() {
-        const { initialData, Board } = this.state;
-        return initialData.columnOrder.map(columnId => {
-            const column = initialData.columns[columnId];
-            const tasks = column.taskIds.map(taskId => initialData.tasks[taskId]);
+        const { initialData, Header, Board } = this.state;
 
-            return column.title;
-        })
+        return(
+            <div>
+                {Header ? <Header /> : <p>Loading</p>}
+                {Board ? <Board initialData={initialData} /> : <p>Loading</p>}
+            </div>
+        )
     }
 }
 
