@@ -23,11 +23,18 @@ header {
   }
 }
 
-#app {
+footer {
+  background-color: red;
+  padding: 15px 5px;
+}
+
+.app-wrapper {
+
   .container {
     border: 1px solid #d5d5d5;
     border-radius: 2px;
     padding: 5px;
+    margin-bottom: 20px;
 
     .title-column {
       margin: 0;
